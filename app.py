@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
+import os
 
 # === 1. Load model and tokenizer ===
 model = tf.keras.models.load_model("sms_fraud_tf_model.keras")
@@ -41,9 +42,9 @@ def predict():
 
 
 # Run the app
-import os
+
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 10000))  # Render dynamically assigns this
+    app.run(host="0.0.0.0", port=port, debug=False)
 
